@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Posadas de Coyhaique — Cabaña en la Patagonia</title>
   <meta name="description" content="Cabaña de madera en el corazón de la Patagonia chilena. Naturaleza, silencio y confort a solo 6 km de Coyhaique, Región de Aysén.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='56' fill='%230a0a0a'/%3E%3Cpath fill='%23c9a96e' d='M164,80a28,28,0,1,0-28-28A28,28,0,0,0,164,80Zm0-40a12,12,0,1,1-12,12A12,12,0,0,1,164,40Zm90.88,155.92-54.56-92.08A15.87,15.87,0,0,0,186.55,96h0a15.85,15.85,0,0,0-13.76,7.84L146.63,148l-44.84-76.1a16,16,0,0,0-27.58,0L1.11,195.94A8,8,0,0,0,8,208H248a8,8,0,0,0,6.88-12.08ZM88,80l23.57,40H64.43ZM22,192l33-56h66l18.74,31.8,0,0L154,192Zm150.57,0-16.66-28.28L186.55,112,234,192Z'/%3E%3C/svg%3E">
 
   <meta property="og:image" content="https://a0.muscache.com/im/pictures/fab7f40d-ccaf-40ff-9543-96105ba14da7.jpg?im_w=1200">
   <meta property="og:title" content="Posadas de Coyhaique — Cabaña en la Patagonia">
@@ -14,7 +14,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
 
   <style>
@@ -41,7 +41,6 @@
       --r-pill:999px;
 
       --f-dis: 'Clash Display','SF Pro Display',-apple-system,sans-serif;
-      --f-ser: 'Cormorant Garamond',Georgia,serif;
       --f-bd:  'Inter',-apple-system,sans-serif;
 
       --ease:     cubic-bezier(.25,.46,.45,.94);
@@ -50,7 +49,14 @@
 
     /* ===== RESET ===== */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
+
+    /* ===== LENIS SMOOTH SCROLL ===== */
+    html.lenis, html.lenis body{height:auto}
+    .lenis.lenis-smooth{scroll-behavior:auto!important}
+    .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+    .lenis.lenis-stopped{overflow:hidden}
+    .lenis.lenis-scrolling iframe{pointer-events:none}
+
     body{
       background:var(--bg);
       color:var(--text);
@@ -63,6 +69,7 @@
     img{display:block;max-width:100%;object-fit:cover}
     a{text-decoration:none;color:inherit}
     button{cursor:pointer;border:none;background:none;font-family:inherit}
+    .ic{width:1em;height:1em;fill:currentColor;flex-shrink:0;display:block}
 
     ::-webkit-scrollbar{width:3px}
     ::-webkit-scrollbar-track{background:var(--bg)}
@@ -92,12 +99,30 @@
     .nav-logo-mark{color:var(--earth);font-size:18px}
     .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
     .nav-links a{
+      position:relative;
       font-size:12px;font-weight:500;letter-spacing:.06em;
       text-transform:uppercase;color:var(--w60);
       transition:color .2s;
+      padding-bottom:4px;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;left:0;bottom:0;
+      width:0;height:1px;background:var(--earth);
+      transition:width .3s var(--ease-out);
     }
     .nav-links a:hover{color:var(--white)}
+    .nav-links a:hover::after{width:100%}
+    .nav-links a.active{color:var(--earth)}
+    .nav-links a.active::after{width:100%}
+
+    #navProgress{
+      position:fixed;top:0;left:0;height:2px;
+      background:linear-gradient(to right,var(--earth-dk),var(--earth));
+      width:0%;z-index:101;
+      transition:width .1s linear;
+    }
     .nav-btn{
+      display:inline-flex;align-items:center;gap:8px;
       background:var(--earth);color:var(--bg);
       font-family:var(--f-bd);font-size:12px;font-weight:600;
       letter-spacing:.06em;text-transform:uppercase;
@@ -252,7 +277,7 @@
       font-weight:600;color:var(--white);
       line-height:1.05;letter-spacing:-.025em;
     }
-    .s-title em{font-family:var(--f-ser);font-style:italic;font-weight:300;color:var(--earth)}
+    .s-title em{font-family:var(--f-bd);font-style:italic;font-weight:300;color:var(--earth)}
     .s-body{
       font-size:17px;line-height:1.78;
       color:var(--muted);max-width:500px;
@@ -457,7 +482,7 @@
     }
     .mapa-frame iframe{
       width:100%;height:100%;border:none;
-      filter:invert(1) hue-rotate(180deg) brightness(.9);
+      filter:grayscale(.25) contrast(1.05) brightness(.96);
     }
 
     .mapa-cards{
@@ -536,7 +561,26 @@
       color:#4a90d9;font-size:12px;margin:6px 0 4px;letter-spacing:2px;
     }
 
-    /* ===== RESPONSIVE ===== */
+    /* ===== RESPONSIVE — TABLET ===== */
+    @media(max-width:1024px){
+      #nav{padding:18px 32px}
+      #nav.scrolled{padding:12px 32px}
+      .nav-links{gap:18px}
+      section{padding:64px 32px}
+      .hero-badges{right:32px}
+      .hero-price{right:32px}
+      .cabana-wrap{gap:44px}
+      .am-grid{grid-template-columns:repeat(3,1fr)}
+      .mapa-cards{grid-template-columns:repeat(2,1fr)}
+      .foot-grid{grid-template-columns:1fr 1fr;gap:36px 24px}
+    }
+
+    @media(min-width:769px) and (max-width:900px){
+      .ratings-grid{grid-template-columns:repeat(2,1fr)}
+      .reviews-grid{grid-template-columns:1fr}
+    }
+
+    /* ===== RESPONSIVE — MOBILE ===== */
     @media(max-width:768px){
 
       /* — NAV — */
@@ -677,9 +721,10 @@
     }
     .mob-overlay.open{opacity:1;pointer-events:auto}
     .mob-overlay a{
-      font-family:var(--f-ser);
+      font-family:var(--f-bd);
       font-size:clamp(28px,7vw,42px);
       font-weight:300;
+      font-style:italic;
       color:var(--w60);
       padding:8px 0;
       transition:color .3s;
@@ -687,7 +732,8 @@
     .mob-overlay a:hover{color:var(--earth)}
     .mob-close{
       position:absolute;top:24px;right:24px;
-      font-size:28px;color:var(--w60);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--w60);
       cursor:pointer;transition:color .3s;
       background:none;border:none;
     }
@@ -710,26 +756,30 @@
 <body>
 
 <!-- NAV -->
+<div id="navProgress"></div>
 <nav id="nav">
   <a href="#" class="nav-logo">
     <span class="nav-logo-mark">◆</span>
     Posadas de Coyhaique
   </a>
   <ul class="nav-links">
-    <li><a href="#cabana">La Cabaña</a></li>
-    <li><a href="#galeria">Galería</a></li>
-    <li><a href="#amenidades">Servicios</a></li>
-    <li><a href="#valoraciones">Reseñas</a></li>
-    <li><a href="#mapa">Ubicación</a></li>
+    <li><a href="#cabana" data-sec="cabana">La Cabaña</a></li>
+    <li><a href="#galeria" data-sec="galeria">Galería</a></li>
+    <li><a href="#amenidades" data-sec="amenidades">Servicios</a></li>
+    <li><a href="#valoraciones" data-sec="valoraciones">Reseñas</a></li>
+    <li><a href="#mapa" data-sec="mapa">Ubicación</a></li>
   </ul>
-  <a href="https://www.booking.com/hotel/cl/cabanas-posadas-de-coyhaique.es.html" target="_blank" class="nav-btn">Reservar</a>
+  <a href="https://www.booking.com/hotel/cl/cabanas-posadas-de-coyhaique.es.html" target="_blank" class="nav-btn">
+    <svg width="13" height="13" viewBox="0 0 256 256" fill="currentColor"><path d="M208,32H180V24a12,12,0,0,0-24,0v8H100V24a12,12,0,0,0-24,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM76,56a12,12,0,0,0,24,0h56a12,12,0,0,0,24,0h28V80H48V56ZM208,208H48V104H208v104Z"/></svg>
+    Reservar
+  </a>
   <button class="nav-ham" id="navHam" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <div id="mobNav" class="mob-overlay">
-  <button class="mob-close" id="mobClose">✕</button>
+  <button class="mob-close" id="mobClose" aria-label="Cerrar menú"><svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
   <a href="#cabana" onclick="closeMob()">La Cabaña</a>
   <a href="#galeria" onclick="closeMob()">Galería</a>
   <a href="#amenidades" onclick="closeMob()">Servicios</a>
@@ -757,19 +807,19 @@
     </div>
     <div class="hero-pills">
       <div class="hero-pill">
-        <div class="pill-icon">👥</div>
+        <div class="pill-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/></svg></div>
         <div class="pill-info"><strong>5</strong><span>Huéspedes</span></div>
       </div>
       <div class="hero-pill">
-        <div class="pill-icon">🛏</div>
+        <div class="pill-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M216,72H32V48a8,8,0,0,0-16,0V208a8,8,0,0,0,16,0V176H240v32a8,8,0,0,0,16,0V112A40,40,0,0,0,216,72ZM32,88h72v72H32Zm88,72V88h96a24,24,0,0,1,24,24v48Z"/></svg></div>
         <div class="pill-info"><strong>2</strong><span>Dormitorios</span></div>
       </div>
       <div class="hero-pill">
-        <div class="pill-icon">🛁</div>
+        <div class="pill-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M240,96H208a8,8,0,0,0-8-8H136a8,8,0,0,0-8,8H64V52A12,12,0,0,1,76,40a12.44,12.44,0,0,1,12.16,9.59,8,8,0,0,0,15.68-3.18A28.32,28.32,0,0,0,76,24,28,28,0,0,0,48,52V96H16a8,8,0,0,0-8,8v40a56.06,56.06,0,0,0,56,56v16a8,8,0,0,0,16,0V200h96v16a8,8,0,0,0,16,0V200a56.06,56.06,0,0,0,56-56V104A8,8,0,0,0,240,96Zm-48,8v32H144V104Zm40,40a40,40,0,0,1-40,40H64a40,40,0,0,1-40-40V112H128v32a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V112h24Z"/></svg></div>
         <div class="pill-info"><strong>1</strong><span>Baño</span></div>
       </div>
       <div class="hero-pill">
-        <div class="pill-icon">📍</div>
+        <div class="pill-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></svg></div>
         <div class="pill-info"><strong>Km 6</strong><span>Coyhaique</span></div>
       </div>
     </div>
@@ -861,28 +911,28 @@
     <p class="ent-lead rv d2">A 6 km del centro de Coyhaique, rodeado de bosques nativos, ríos y montañas. Todo lo que la Patagonia tiene para ofrecer, al alcance de tu mano.</p>
     <div class="ent-list">
       <div class="ent-item rv d1">
-        <div class="ent-icon">🏔</div>
+        <div class="ent-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M164,80a28,28,0,1,0-28-28A28,28,0,0,0,164,80Zm0-40a12,12,0,1,1-12,12A12,12,0,0,1,164,40Zm90.88,155.92-54.56-92.08A15.87,15.87,0,0,0,186.55,96h0a15.85,15.85,0,0,0-13.76,7.84L146.63,148l-44.84-76.1a16,16,0,0,0-27.58,0L1.11,195.94A8,8,0,0,0,8,208H248a8,8,0,0,0,6.88-12.08ZM88,80l23.57,40H64.43ZM22,192l33-56h66l18.74,31.8,0,0L154,192Zm150.57,0-16.66-28.28L186.55,112,234,192Z"/></svg></div>
         <div class="ent-txt">
           <strong>Cerro Mackay</strong>
           <span>Trekking y vistas panorámicas del valle de Coyhaique</span>
         </div>
       </div>
       <div class="ent-item rv d2">
-        <div class="ent-icon">🦆</div>
+        <div class="ent-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M230.32,187.09l-46-59.09H208a8,8,0,0,0,6.34-12.88l-80-104a8,8,0,0,0-12.68,0l-80,104A8,8,0,0,0,48,128H71.64l-46,59.09A8,8,0,0,0,32,200h88v40a8,8,0,0,0,16,0V200h88a8,8,0,0,0,6.32-12.91ZM48.36,184l46-59.09A8,8,0,0,0,88,112H64.25L128,29.12,191.75,112H168a8,8,0,0,0-6.31,12.91L207.64,184Z"/></svg></div>
         <div class="ent-txt">
           <strong>Reserva Nacional Coyhaique</strong>
           <span>Bosques de lenga, cascadas y avistamiento de fauna nativa</span>
         </div>
       </div>
       <div class="ent-item rv d3">
-        <div class="ent-icon">🎣</div>
+        <div class="ent-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M168,76a12,12,0,1,1-12-12A12,12,0,0,1,168,76Zm48.72,67.64c-19.37,34.9-55.44,53.76-107.24,56.1l-22,51.41A8,8,0,0,1,80.1,256l-.51,0a8,8,0,0,1-7.19-5.78L57.6,198.39,5.8,183.56a8,8,0,0,1-1-15.05l51.41-22c2.35-51.78,21.21-87.84,56.09-107.22,24.75-13.74,52.74-15.84,71.88-15.18,18.64.64,36,4.27,38.86,6a8,8,0,0,1,2.83,2.83c1.69,2.85,5.33,20.21,6,38.85C232.55,90.89,230.46,118.89,216.72,143.64Zm-55.18,29a52.11,52.11,0,0,1-33.4-44.78A52.09,52.09,0,0,1,83.37,94.47q-10.45,23.79-11.3,57.59a8,8,0,0,1-4.85,7.17L31.83,174.37l34.45,9.86a8,8,0,0,1,5.49,5.5l9.84,34.44,15.16-35.4a8,8,0,0,1,7.17-4.84Q137.71,183.12,161.54,172.64ZM212.42,43.57c-14.15-3-64.1-11-100.3,14.75a81.21,81.21,0,0,0-16,15.07,36,36,0,0,0,39.35,38.44,8,8,0,0,1,8.73,8.73,36,36,0,0,0,38.47,39.34,80.81,80.81,0,0,0,15-16C223.42,107.73,215.42,57.74,212.42,43.57Z"/></svg></div>
         <div class="ent-txt">
           <strong>Pesca en el Río Simpson</strong>
           <span>Trucha arco iris y salmón en aguas cristalinas de la Patagonia</span>
         </div>
       </div>
       <div class="ent-item rv d4">
-        <div class="ent-icon">🛍</div>
+        <div class="ent-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M232,96a7.89,7.89,0,0,0-.3-2.2L217.35,43.6A16.07,16.07,0,0,0,202,32H54A16.07,16.07,0,0,0,38.65,43.6L24.31,93.8A7.89,7.89,0,0,0,24,96h0v16a40,40,0,0,0,16,32v72a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8V144a40,40,0,0,0,16-32V96ZM54,48H202l11.42,40H42.61Zm50,56h48v8a24,24,0,0,1-48,0Zm-16,0v8a24,24,0,0,1-35.12,21.26,7.88,7.88,0,0,0-1.82-1.06A24,24,0,0,1,40,112v-8ZM200,208H56V151.2a40.57,40.57,0,0,0,8,.8,40,40,0,0,0,32-16,40,40,0,0,0,64,0,40,40,0,0,0,32,16,40.57,40.57,0,0,0,8-.8Zm4.93-75.8a8.08,8.08,0,0,0-1.8,1.05A24,24,0,0,1,168,112v-8h48v8A24,24,0,0,1,204.93,132.2Z"/></svg></div>
         <div class="ent-txt">
           <strong>Centro de Coyhaique</strong>
           <span>A solo 6 km — 10 minutos en auto por camino pavimentado</span>
@@ -900,18 +950,18 @@
     <h2 class="s-title rv d1">Todo lo que<br><em>necesitas</em></h2>
   </div>
   <div class="am-grid">
-    <div class="am-card rv d1"><div class="am-icon">🪵</div><div class="am-name">Calefacción a leña</div><div class="am-desc">Chimenea de leña patagónica</div></div>
-    <div class="am-card rv d2"><div class="am-icon">📶</div><div class="am-name">WiFi gratuito</div><div class="am-desc">Conexión estable incluida</div></div>
-    <div class="am-card rv d3"><div class="am-icon">🍽️</div><div class="am-name">Cocina equipada</div><div class="am-desc">Utensilios y electrodomésticos</div></div>
-    <div class="am-card rv d4"><div class="am-icon">🅿️</div><div class="am-name">Estacionamiento</div><div class="am-desc">Privado y gratuito</div></div>
-    <div class="am-card rv d1"><div class="am-icon">📺</div><div class="am-name">Smart TV + Cable</div><div class="am-desc">TV satelital y streaming</div></div>
-    <div class="am-card rv d2"><div class="am-icon">🚿</div><div class="am-name">Baño completo</div><div class="am-desc">Agua caliente las 24h</div></div>
-    <div class="am-card rv d3"><div class="am-icon">🌄</div><div class="am-name">Terraza panorámica</div><div class="am-desc">Vista a bosques y montañas</div></div>
-    <div class="am-card rv d4"><div class="am-icon">🌲</div><div class="am-name">Bosque nativo</div><div class="am-desc">Entorno natural protegido</div></div>
-    <div class="am-card rv d1"><div class="am-icon">🧺</div><div class="am-name">Lavadora</div><div class="am-desc">Ideal para estadías largas</div></div>
-    <div class="am-card rv d2"><div class="am-icon">🐾</div><div class="am-name">Pet-friendly</div><div class="am-desc">Mascotas bienvenidas</div></div>
-    <div class="am-card rv d3"><div class="am-icon">🏔️</div><div class="am-name">Vista al cerro</div><div class="am-desc">Cordones montañosos nevados</div></div>
-    <div class="am-card rv d4"><div class="am-icon">🎮</div><div class="am-name">Zona de juegos</div><div class="am-desc">Jardín y juegos para niños</div></div>
+    <div class="am-card rv d1"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M223.62,226.42a8,8,0,0,1-10.05,5.2L128,204.39,42.43,231.62a8,8,0,1,1-4.85-15.25l64-20.37-64-20.38a8,8,0,1,1,4.85-15.24L128,187.6l85.57-27.22a8,8,0,1,1,4.85,15.24l-64,20.38,64,20.37A8,8,0,0,1,223.62,226.42ZM68,108c0-20.1,9.77-40.87,28.24-60a156,156,0,0,1,27.57-22.76,8,8,0,0,1,8.38,0C134.47,26.59,188,60.08,188,108a60,60,0,0,1-120,0Zm60,44a16,16,0,0,0,16-16c0-13.57-10-24.46-16-29.79-6,5.33-16,16.22-16,29.79A16,16,0,0,0,128,152ZM84,108a43.83,43.83,0,0,0,12.09,30.24c0-.74-.09-1.49-.09-2.24,0-28,26.44-45.91,27.56-46.66a8,8,0,0,1,8.88,0C133.56,90.09,160,108,160,136c0,.75,0,1.5-.09,2.24A43.83,43.83,0,0,0,172,108c0-32-32.26-58-44-66.34C116.27,50,84,76,84,108Z"/></svg></div><div class="am-name">Calefacción a leña</div><div class="am-desc">Chimenea de leña patagónica</div></div>
+    <div class="am-card rv d2"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M140,204a12,12,0,1,1-12-12A12,12,0,0,1,140,204ZM237.08,87A172,172,0,0,0,18.92,87,8,8,0,0,0,29.08,99.37a156,156,0,0,1,197.84,0A8,8,0,0,0,237.08,87ZM205,122.77a124,124,0,0,0-153.94,0A8,8,0,0,0,61,135.31a108,108,0,0,1,134.06,0,8,8,0,0,0,11.24-1.3A8,8,0,0,0,205,122.77Zm-32.26,35.76a76.05,76.05,0,0,0-89.42,0,8,8,0,0,0,9.42,12.94,60,60,0,0,1,70.58,0,8,8,0,1,0,9.42-12.94Z"/></svg></div><div class="am-name">WiFi gratuito</div><div class="am-desc">Conexión estable incluida</div></div>
+    <div class="am-card rv d3"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M72,88V40a8,8,0,0,1,16,0V88a8,8,0,0,1-16,0ZM216,40V224a8,8,0,0,1-16,0V176H152a8,8,0,0,1-8-8,268.75,268.75,0,0,1,7.22-56.88c9.78-40.49,28.32-67.63,53.63-78.47A8,8,0,0,1,216,40ZM200,53.9c-32.17,24.57-38.47,84.42-39.7,106.1H200ZM119.89,38.69a8,8,0,1,0-15.78,2.63L112,88.63a32,32,0,0,1-64,0l7.88-47.31a8,8,0,1,0-15.78-2.63l-8,48A8.17,8.17,0,0,0,32,88a48.07,48.07,0,0,0,40,47.32V224a8,8,0,0,0,16,0V135.32A48.07,48.07,0,0,0,128,88a8.17,8.17,0,0,0-.11-1.31Z"/></svg></div><div class="am-name">Cocina equipada</div><div class="am-desc">Utensilios y electrodomésticos</div></div>
+    <div class="am-card rv d4"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M240,104H229.2L201.42,41.5A16,16,0,0,0,186.8,32H69.2a16,16,0,0,0-14.62,9.5L26.8,104H16a8,8,0,0,0,0,16h8v80a16,16,0,0,0,16,16H64a16,16,0,0,0,16-16V184h96v16a16,16,0,0,0,16,16h24a16,16,0,0,0,16-16V120h8a8,8,0,0,0,0-16ZM69.2,48H186.8l24.89,56H44.31ZM64,200H40V184H64Zm128,0V184h24v16Zm24-32H40V120H216ZM56,144a8,8,0,0,1,8-8H80a8,8,0,0,1,0,16H64A8,8,0,0,1,56,144Zm112,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,144Z"/></svg></div><div class="am-name">Estacionamiento</div><div class="am-desc">Privado y gratuito</div></div>
+    <div class="am-card rv d1"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M216,64H147.31l34.35-34.34a8,8,0,1,0-11.32-11.32L128,60.69,85.66,18.34A8,8,0,0,0,74.34,29.66L108.69,64H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM40,80H144V200H40ZM216,200H160V80h56V200Zm-16-84a12,12,0,1,1-12-12A12,12,0,0,1,200,116Zm0,48a12,12,0,1,1-12-12A12,12,0,0,1,200,164Z"/></svg></div><div class="am-name">Smart TV + Cable</div><div class="am-desc">TV satelital y streaming</div></div>
+    <div class="am-card rv d2"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V48H208V208ZM128,64a64,64,0,1,0,64,64A64.07,64.07,0,0,0,128,64Zm0,112a48,48,0,1,1,48-48A48.05,48.05,0,0,1,128,176ZM200,68a12,12,0,1,1-12-12A12,12,0,0,1,200,68Zm-74.34,49.66-16,16a8,8,0,0,1-11.32-11.32l16-16a8,8,0,0,1,11.32,11.32Zm32-3.32a8,8,0,0,1,0,11.32l-32,32a8,8,0,0,1-11.32-11.32l32-32A8,8,0,0,1,157.66,114.34Z"/></svg></div><div class="am-name">Baño completo</div><div class="am-desc">Agua caliente las 24h</div></div>
+    <div class="am-card rv d3"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M237.2,151.87v0a47.1,47.1,0,0,0-2.35-5.45L193.26,51.8a7.82,7.82,0,0,0-1.66-2.44,32,32,0,0,0-45.26,0A8,8,0,0,0,144,55V80H112V55a8,8,0,0,0-2.34-5.66,32,32,0,0,0-45.26,0,7.82,7.82,0,0,0-1.66,2.44L21.15,146.4a47.1,47.1,0,0,0-2.35,5.45v0A48,48,0,1,0,112,168V96h32v72a48,48,0,1,0,93.2-16.13ZM76.71,59.75a16,16,0,0,1,19.29-1v73.51a47.9,47.9,0,0,0-46.79-9.92ZM64,200a32,32,0,1,1,32-32A32,32,0,0,1,64,200ZM160,58.74a16,16,0,0,1,19.29,1l27.5,62.58A47.9,47.9,0,0,0,160,132.25ZM192,200a32,32,0,1,1,32-32A32,32,0,0,1,192,200Z"/></svg></div><div class="am-name">Terraza panorámica</div><div class="am-desc">Vista a bosques y montañas</div></div>
+    <div class="am-card rv d4"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M198.1,62.59a76,76,0,0,0-140.2,0A71.71,71.71,0,0,0,16,127.8C15.9,166,48,199,86.14,200A72.09,72.09,0,0,0,120,192.47V232a8,8,0,0,0,16,0V192.47A72.17,72.17,0,0,0,168,200l1.82,0C208,199,240.11,166,240,127.8A71.71,71.71,0,0,0,198.1,62.59ZM169.45,184a56.08,56.08,0,0,1-33.45-10v-41l43.58-21.78a8,8,0,1,0-7.16-14.32L136,115.06V88a8,8,0,0,0-16,0v51.06L83.58,120.84a8,8,0,1,0-7.16,14.32L120,156.94v17a56,56,0,0,1-33.45,10C56.9,183.23,31.92,157.52,32,127.84A55.77,55.77,0,0,1,67.11,76a8,8,0,0,0,4.53-4.67,60,60,0,0,1,112.72,0A8,8,0,0,0,188.89,76,55.79,55.79,0,0,1,224,127.84C224.08,157.52,199.1,183.23,169.45,184Z"/></svg></div><div class="am-name">Bosque nativo</div><div class="am-desc">Entorno natural protegido</div></div>
+    <div class="am-card rv d1"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V48H208V208ZM128,64a64,64,0,1,0,64,64A64.07,64.07,0,0,0,128,64Zm0,112a48,48,0,1,1,48-48A48.05,48.05,0,0,1,128,176ZM200,68a12,12,0,1,1-12-12A12,12,0,0,1,200,68Zm-74.34,49.66-16,16a8,8,0,0,1-11.32-11.32l16-16a8,8,0,0,1,11.32,11.32Zm32-3.32a8,8,0,0,1,0,11.32l-32,32a8,8,0,0,1-11.32-11.32l32-32A8,8,0,0,1,157.66,114.34Z"/></svg></div><div class="am-name">Lavadora</div><div class="am-desc">Ideal para estadías largas</div></div>
+    <div class="am-card rv d2"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M212,80a28,28,0,1,0,28,28A28,28,0,0,0,212,80Zm0,40a12,12,0,1,1,12-12A12,12,0,0,1,212,120ZM72,108a28,28,0,1,0-28,28A28,28,0,0,0,72,108ZM44,120a12,12,0,1,1,12-12A12,12,0,0,1,44,120ZM92,88A28,28,0,1,0,64,60,28,28,0,0,0,92,88Zm0-40A12,12,0,1,1,80,60,12,12,0,0,1,92,48Zm72,40a28,28,0,1,0-28-28A28,28,0,0,0,164,88Zm0-40a12,12,0,1,1-12,12A12,12,0,0,1,164,48Zm23.12,100.86a35.3,35.3,0,0,1-16.87-21.14,44,44,0,0,0-84.5,0A35.25,35.25,0,0,1,69,148.82,40,40,0,0,0,88,224a39.48,39.48,0,0,0,15.52-3.13,64.09,64.09,0,0,1,48.87,0,40,40,0,0,0,34.73-72ZM168,208a24,24,0,0,1-9.45-1.93,80.14,80.14,0,0,0-61.19,0,24,24,0,0,1-20.71-43.26,51.22,51.22,0,0,0,24.46-30.67,28,28,0,0,1,53.78,0,51.27,51.27,0,0,0,24.53,30.71A24,24,0,0,1,168,208Z"/></svg></div><div class="am-name">Pet-friendly</div><div class="am-desc">Mascotas bienvenidas</div></div>
+    <div class="am-card rv d3"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M164,80a28,28,0,1,0-28-28A28,28,0,0,0,164,80Zm0-40a12,12,0,1,1-12,12A12,12,0,0,1,164,40Zm90.88,155.92-54.56-92.08A15.87,15.87,0,0,0,186.55,96h0a15.85,15.85,0,0,0-13.76,7.84L146.63,148l-44.84-76.1a16,16,0,0,0-27.58,0L1.11,195.94A8,8,0,0,0,8,208H248a8,8,0,0,0,6.88-12.08ZM88,80l23.57,40H64.43ZM22,192l33-56h66l18.74,31.8,0,0L154,192Zm150.57,0-16.66-28.28L186.55,112,234,192Z"/></svg></div><div class="am-name">Vista al cerro</div><div class="am-desc">Cordones montañosos nevados</div></div>
+    <div class="am-card rv d4"><div class="am-icon"><svg class="ic" viewBox="0 0 256 256"><path d="M176,112H152a8,8,0,0,1,0-16h24a8,8,0,0,1,0,16ZM104,96H96V88a8,8,0,0,0-16,0v8H72a8,8,0,0,0,0,16h8v8a8,8,0,0,0,16,0v-8h8a8,8,0,0,0,0-16ZM241.48,200.65a36,36,0,0,1-54.94,4.81c-.12-.12-.24-.24-.35-.37L146.48,160h-37L69.81,205.09l-.35.37A36.08,36.08,0,0,1,44,216,36,36,0,0,1,8.56,173.75a.68.68,0,0,1,0-.14L24.93,89.52A59.88,59.88,0,0,1,83.89,40H172a60.08,60.08,0,0,1,59,49.25c0,.06,0,.12,0,.18l16.37,84.17a.68.68,0,0,1,0,.14A35.74,35.74,0,0,1,241.48,200.65ZM172,144a44,44,0,0,0,0-88H83.89A43.9,43.9,0,0,0,40.68,92.37l0,.13L24.3,176.59A20,20,0,0,0,58,194.3l41.92-47.59a8,8,0,0,1,6-2.71Zm59.7,32.59-8.74-45A60,60,0,0,1,172,160h-4.2L198,194.31a20.09,20.09,0,0,0,17.46,5.39,20,20,0,0,0,16.23-23.11Z"/></svg></div><div class="am-name">Zona de juegos</div><div class="am-desc">Jardín y juegos para niños</div></div>
   </div>
 </section>
 
@@ -928,8 +978,8 @@
       <div class="dorm-body">
         <h3>Recámara 1</h3>
         <div class="dorm-beds">
-          <div class="dorm-bed">🛏&nbsp; 1 cama individual</div>
-          <div class="dorm-bed">🛏&nbsp; 1 cama individual</div>
+          <div class="dorm-bed"><svg class="ic" viewBox="0 0 256 256"><path d="M216,72H32V48a8,8,0,0,0-16,0V208a8,8,0,0,0,16,0V176H240v32a8,8,0,0,0,16,0V112A40,40,0,0,0,216,72ZM32,88h72v72H32Zm88,72V88h96a24,24,0,0,1,24,24v48Z"/></svg>&nbsp; 1 cama individual</div>
+          <div class="dorm-bed"><svg class="ic" viewBox="0 0 256 256"><path d="M216,72H32V48a8,8,0,0,0-16,0V208a8,8,0,0,0,16,0V176H240v32a8,8,0,0,0,16,0V112A40,40,0,0,0,216,72ZM32,88h72v72H32Zm88,72V88h96a24,24,0,0,1,24,24v48Z"/></svg>&nbsp; 1 cama individual</div>
         </div>
       </div>
     </div>
@@ -938,7 +988,7 @@
       <div class="dorm-body">
         <h3>Recámara 2</h3>
         <div class="dorm-beds">
-          <div class="dorm-bed">🛏&nbsp; 1 cama matrimonial</div>
+          <div class="dorm-bed"><svg class="ic" viewBox="0 0 256 256"><path d="M216,72H32V48a8,8,0,0,0-16,0V208a8,8,0,0,0,16,0V176H240v32a8,8,0,0,0,16,0V112A40,40,0,0,0,216,72ZM32,88h72v72H32Zm88,72V88h96a24,24,0,0,1,24,24v48Z"/></svg>&nbsp; 1 cama matrimonial</div>
         </div>
       </div>
     </div>
@@ -1044,22 +1094,22 @@
 
   <div class="mapa-cards rv d3">
     <div class="mapa-card">
-      <div class="mapa-card-ico">📍</div>
+      <div class="mapa-card-ico"><svg class="ic" viewBox="0 0 256 256"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></svg></div>
       <strong>Dirección</strong>
       <span>Camino Coyhaique Alto km6, Coyhaique, Aysén</span>
     </div>
     <div class="mapa-card">
-      <div class="mapa-card-ico">🚗</div>
+      <div class="mapa-card-ico"><svg class="ic" viewBox="0 0 256 256"><path d="M246,106.65,212.33,69.3A16,16,0,0,0,200.44,64H136V32a8,8,0,0,0-16,0V64H40A16,16,0,0,0,24,80v64a16,16,0,0,0,16,16h80v64a8,8,0,0,0,16,0V160h64.44a16,16,0,0,0,11.89-5.3L246,117.35A8,8,0,0,0,246,106.65ZM200.44,144H40V80H200.44l28.8,32Z"/></svg></div>
       <strong>Cómo llegar</strong>
       <span>10 min en auto desde el centro. Camino pavimentado.</span>
     </div>
     <div class="mapa-card">
-      <div class="mapa-card-ico">🅿️</div>
+      <div class="mapa-card-ico"><svg class="ic" viewBox="0 0 256 256"><path d="M240,104H229.2L201.42,41.5A16,16,0,0,0,186.8,32H69.2a16,16,0,0,0-14.62,9.5L26.8,104H16a8,8,0,0,0,0,16h8v80a16,16,0,0,0,16,16H64a16,16,0,0,0,16-16V184h96v16a16,16,0,0,0,16,16h24a16,16,0,0,0,16-16V120h8a8,8,0,0,0,0-16ZM69.2,48H186.8l24.89,56H44.31ZM64,200H40V184H64Zm128,0V184h24v16Zm24-32H40V120H216ZM56,144a8,8,0,0,1,8-8H80a8,8,0,0,1,0,16H64A8,8,0,0,1,56,144Zm112,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,144Z"/></svg></div>
       <strong>Estacionamiento</strong>
       <span>Estacionamiento privado gratuito en el lugar.</span>
     </div>
     <div class="mapa-card">
-      <div class="mapa-card-ico">📋</div>
+      <div class="mapa-card-ico"><svg class="ic" viewBox="0 0 256 256"><path d="M168,152a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,152Zm-8-40H96a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm56-64V216a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V48A16,16,0,0,1,56,32H92.26a47.92,47.92,0,0,1,71.48,0H200A16,16,0,0,1,216,48ZM96,64h64a32,32,0,0,0-64,0ZM200,48H173.25A47.93,47.93,0,0,1,176,64v8a8,8,0,0,1-8,8H88a8,8,0,0,1-8-8V64a47.93,47.93,0,0,1,2.75-16H56V216H200Z"/></svg></div>
       <strong>Normas</strong>
       <span>No se permiten fiestas · No fumar · Mascotas bajo consulta.</span>
     </div>
@@ -1148,26 +1198,64 @@
   </svg>
 </a>
 
+<script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
 <script>
-// ── SMOOTH ANCHOR SCROLL ──────────────────────────────────────────
+// ── LENIS SMOOTH SCROLL ────────────────────────────────────────────
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  orientation: 'vertical',
+  smoothWheel: true,
+  wheelMultiplier: 1,
+  touchMultiplier: 1.5,
+  infinite: false,
+});
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+// ── SMOOTH ANCHOR SCROLL (via Lenis) ──────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const t = document.querySelector(href);
     if (!t) return;
     e.preventDefault();
-    const top = t.getBoundingClientRect().top + window.scrollY - 60;
-    window.scrollTo({ top, behavior: 'smooth' });
+    lenis.scrollTo(t, { offset: -60 });
   });
 });
 
 // ── NAV ──────────────────────────────────────────────────────────
 const nav = document.getElementById('nav');
+const navProgress = document.getElementById('navProgress');
 
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
   nav.classList.toggle('scrolled', y > 50);
   document.getElementById('wfab').classList.toggle('on', y > 300);
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  navProgress.style.width = (docH > 0 ? (y / docH) * 100 : 0) + '%';
 }, { passive: true });
+
+// ACTIVE NAV LINK ON SCROLL
+const navLinks = document.querySelectorAll('.nav-links a[data-sec]');
+const secIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    const link = document.querySelector(`.nav-links a[data-sec="${e.target.id}"]`);
+    if (!link) return;
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+navLinks.forEach(a => {
+  const sec = document.getElementById(a.dataset.sec);
+  if (sec) secIO.observe(sec);
+});
 
 // INTERSECTION OBSERVER — fade-up
 const io = new IntersectionObserver((entries) => {
