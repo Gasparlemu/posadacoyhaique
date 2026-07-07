@@ -33,6 +33,10 @@
       --earth-dk: #a8834d;
       --e10:   rgba(201,169,110,.10);
       --e20:   rgba(201,169,110,.20);
+      --forest: #6b8768;
+      --forest-dk: #526b4f;
+      --fo10:  rgba(107,135,104,.12);
+      --fo20:  rgba(107,135,104,.28);
       --text:  #c8c5c0;
       --muted: #706d66;
 
@@ -149,12 +153,22 @@
         rgba(10,10,10,.88) 100%
       );
     }
+    .hero-inner{
+      position:relative;z-index:2;width:100%;
+      max-width:1440px;margin:0 auto;
+      padding:0 64px;
+      display:flex;align-items:flex-end;justify-content:center;
+      gap:32px;
+    }
     .hero-content{
-      position:relative;z-index:2;
-      padding:60px 64px 96px;
-      width:100%;
+      flex:1;min-width:0;
+      padding:60px 0 96px;
       display:flex;flex-direction:column;align-items:center;
       text-align:center;
+    }
+    .hero-side{
+      display:flex;flex-direction:column;align-items:flex-end;
+      gap:14px;padding-bottom:96px;flex-shrink:0;
     }
     .hero-tag{
       display:inline-flex;align-items:center;gap:10px;
@@ -164,10 +178,10 @@
     .hero-tag::before{content:'';width:22px;height:1px;background:var(--earth)}
     h1.hero-title{
       font-family:var(--f-dis);
-      font-size:clamp(64px,9vw,124px);
+      font-size:clamp(44px,7vw,104px);
       font-weight:700;color:var(--white);
-      line-height:1.05;letter-spacing:-.03em;margin-bottom:28px;
-      word-spacing:.22em;
+      line-height:1.08;letter-spacing:-.02em;margin-bottom:28px;
+      text-wrap:balance;
       text-shadow:0 2px 20px rgba(0,0,0,.6),0 4px 60px rgba(0,0,0,.4),0 0 120px rgba(0,0,0,.3);
     }
     .hero-line1{display:block}
@@ -210,7 +224,7 @@
       width:38px;height:38px;border-radius:11px;
       background:var(--w10);backdrop-filter:blur(12px);
       display:flex;align-items:center;justify-content:center;
-      font-size:17px;flex-shrink:0;
+      font-size:17px;flex-shrink:0;color:var(--earth);
     }
     .pill-info strong{
       display:block;font-size:15px;font-weight:600;
@@ -222,8 +236,6 @@
     }
 
     .hero-badges{
-      position:absolute;top:50%;right:60px;
-      transform:translateY(-50%);
       display:flex;flex-direction:column;gap:12px;
     }
     .hero-rating,.hero-rating-booking{
@@ -240,7 +252,6 @@
     .hero-rating .platform,.hero-rating-booking .platform{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 
     .hero-price{
-      position:absolute;bottom:96px;right:60px;
       background:var(--earth);color:var(--bg);
       border-radius:14px;padding:14px 20px;text-align:center;
     }
@@ -349,12 +360,14 @@
       );
     }
     .ent-content{position:relative;z-index:2;max-width:620px}
-    .ent-content .s-tag{font-size:12px;letter-spacing:.18em}
+    .ent-content .s-tag{font-size:12px;letter-spacing:.18em;color:var(--forest)}
+    .ent-content .s-tag::before{background:var(--forest)}
     .ent-content .s-title{
       font-size:clamp(44px,5.5vw,76px);
       text-shadow:0 2px 32px rgba(0,0,0,.6);
       margin-bottom:8px;
     }
+    .ent-content .s-title em{color:var(--forest)}
     .ent-lead{
       font-size:18px;color:rgba(240,237,232,.75);
       line-height:1.6;margin-bottom:32px;
@@ -364,7 +377,8 @@
     .ent-item{display:flex;align-items:flex-start;gap:16px}
     .ent-icon{
       width:46px;height:46px;border-radius:14px;
-      background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.3);
+      background:var(--fo10);border:1px solid var(--fo20);
+      color:var(--forest);
       display:flex;align-items:center;justify-content:center;
       font-size:20px;flex-shrink:0;
     }
@@ -392,7 +406,7 @@
       background:var(--e10);border-color:var(--e20);
       transform:translateY(-4px);
     }
-    .am-icon{font-size:24px;line-height:1}
+    .am-icon{font-size:24px;line-height:1;color:var(--earth)}
     .am-name{font-size:15px;font-weight:500;color:var(--white)}
     .am-desc{font-size:12px;color:var(--muted);line-height:1.4}
 
@@ -415,6 +429,7 @@
     }
     .dorm-beds{display:flex;flex-direction:column;gap:6px}
     .dorm-bed{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+    .dorm-bed .ic{color:var(--earth)}
 
     /* ===== VALORACIONES ===== */
     #valoraciones{background:radial-gradient(ellipse 90% 40% at 50% 0%,rgba(201,169,110,.04) 0%,transparent 60%),var(--bg-2)}
@@ -494,7 +509,7 @@
       border-radius:var(--r-sm);padding:22px 20px;
       display:flex;flex-direction:column;gap:6px;
     }
-    .mapa-card-ico{font-size:22px;margin-bottom:4px}
+    .mapa-card-ico{font-size:22px;margin-bottom:4px;color:var(--earth)}
     .mapa-card strong{font-size:13px;font-weight:600;color:var(--white)}
     .mapa-card span{font-size:13px;color:var(--muted);line-height:1.5}
     .mapa-cta{max-width:1200px;margin:0 auto;display:flex;justify-content:center}
@@ -567,8 +582,8 @@
       #nav.scrolled{padding:12px 32px}
       .nav-links{gap:18px}
       section{padding:64px 32px}
-      .hero-badges{right:32px}
-      .hero-price{right:32px}
+      .hero-inner{padding:0 32px;gap:20px}
+      .hero-side{display:none}
       .cabana-wrap{gap:44px}
       .am-grid{grid-template-columns:repeat(3,1fr)}
       .mapa-cards{grid-template-columns:repeat(2,1fr)}
@@ -592,12 +607,12 @@
 
       /* — HERO — */
       #hero{min-height:100svh}
-      .hero-badges,.hero-price{display:none}
+      .hero-inner{padding:0}
+      .hero-side{display:none}
       .hero-content{padding:28px 20px 48px;align-items:center}
       .hero-tag{font-size:10px;margin-bottom:14px}
       h1.hero-title{
         font-size:clamp(34px,10vw,52px);
-        word-spacing:.06em;
         margin-bottom:14px;
         letter-spacing:-.02em;
       }
@@ -794,6 +809,7 @@
 <section id="hero">
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-veil"></div>
+  <div class="hero-inner">
   <div class="hero-content">
     <div class="hero-tag">Patagonia · Coyhaique · Chile</div>
     <h1 class="hero-title"><span class="hero-line1">Tu refugio en la</span><em>Patagonia Chilena.</em></h1>
@@ -824,22 +840,25 @@
       </div>
     </div>
   </div>
-  <div class="hero-badges">
-    <div class="hero-rating">
-      <div class="score">4.29</div>
-      <div class="stars">★★★★☆</div>
-      <div class="platform">Airbnb</div>
+  <div class="hero-side">
+    <div class="hero-badges">
+      <div class="hero-rating">
+        <div class="score">4.29</div>
+        <div class="stars">★★★★☆</div>
+        <div class="platform">Airbnb</div>
+      </div>
+      <div class="hero-rating-booking">
+        <div class="score">8.7</div>
+        <div class="dots">●●●●○</div>
+        <div class="platform">Booking.com</div>
+      </div>
     </div>
-    <div class="hero-rating-booking">
-      <div class="score">8.7</div>
-      <div class="dots">●●●●○</div>
-      <div class="platform">Booking.com</div>
+    <div class="hero-price">
+      <div class="from">Desde</div>
+      <div class="amount">$80.000</div>
+      <div class="per">CLP / noche</div>
     </div>
   </div>
-  <div class="hero-price">
-    <div class="from">Desde</div>
-    <div class="amount">$80.000</div>
-    <div class="per">CLP / noche</div>
   </div>
 </section>
 
